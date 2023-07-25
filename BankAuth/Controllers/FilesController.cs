@@ -209,7 +209,7 @@ namespace BankAuth.Controllers
                         total_file_names += string.Join(",", fileNames);
 
                         var emailMessage = new Message(
-                            new string[] { "shetkarthik89@gmail.com" },
+                            new string[] { "archanaabillava0154@gmail.com" },
                             "Loan Application",
                             @"<html>
         <head>

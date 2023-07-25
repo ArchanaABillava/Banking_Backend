@@ -217,8 +217,6 @@ namespace BankAuth.Controllers
             await _authContext.SaveChangesAsync();
 
 
-            // return Ok(new { Message = "LoanApplied Successfully" });
-
             return Ok(new { updatedLoanObj.LoanId });
 
 

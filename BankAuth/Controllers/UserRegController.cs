@@ -120,7 +120,7 @@ namespace BankAuth.Controllers
             <div class=""content"">
                
                 <p>Your OTP for verification is: <span class=""otp"">{generated_token}</span></p>
-               <p class=""remark"">The otp is valid only for 2 minutes</p>
+               <p class=""remark"">The otp is valid only for 5 minutes</p>
             </div>
         </div>
     </body>
@@ -134,15 +134,12 @@ namespace BankAuth.Controllers
             _emailService.SendEmail(emailMessage);
 
 
-            //var text = new Message(
-            //    new string[] { "archanaabillava0154@gmail.com" },
-            //    "OTP for Authentication",
-            //  $"Hello {user.CustomerId}, {Environment.NewLine}  Your OTP for verification is  {generated_token}");
+ 
 
 
             return Ok(new
             {
-                //Token = user.Token,
+                
                 Message = "Check your registered Email for the OTP"
             });
 
@@ -256,15 +253,13 @@ namespace BankAuth.Controllers
                 }
 
 
-                //if (await CheckCustomerIdExistAsync(userObj.userReg.CustomerId))
-                //    return BadRequest(new { Message = "CustomerId already exists" });
+               
 
 
 
                 var newuser = new UserReg
                 {
                     Password = PasswordHasher.HashPassword(userObj.userReg.Password),
-                    //Password = userObj.userReg.Password,
                     Role = "user",
                     Token = "",
                     AccountNum = userObj.custObj.AccountNum,
@@ -323,8 +318,6 @@ namespace BankAuth.Controllers
 
 
         [HttpPost("registerAdmin")]
-
-
         public async Task<IActionResult> RegisterNewAdmin([FromBody] UserReg userObj)
         {
             if (userObj == null)
@@ -335,7 +328,6 @@ namespace BankAuth.Controllers
                 var newuser = new UserReg
                 {
                     Password = PasswordHasher.HashPassword(userObj.Password),
-                    //Password = userObj.userReg.Password,
                     Role = "admin",
                     Token = "",
                     AccountNum = null,
@@ -366,7 +358,7 @@ namespace BankAuth.Controllers
 
             if (phoneUser != null && emailUser != null && accountUser != null && usernameUser != null)
             {
-                // Compare the user IDs
+      
                 if (phoneUser.CustomerAccountId == emailUser.CustomerAccountId && phoneUser.CustomerAccountId == accountUser.CustomerAccountId && phoneUser.CustomerAccountId == usernameUser.CustomerAccountId)
                 {
 
